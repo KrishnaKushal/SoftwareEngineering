@@ -30,30 +30,39 @@ def sum_to_n? arr, n
   arr2=[]
   for i in 0...arr.length
     for j in 0...arr.length
+      if arr[i] !=arr[j]
       sum = arr[i] + arr[j]
       arr2.append(sum)
+      end
     end
   end
-arr2.include?n
+  if arr.length == 1
+    return false
+  else
+    arr2.include?n
+  end
 end
 
 # Part 2
 
 def hello(name)
-  "Hello #{name}"
+  str = "Hello, #{name}"
 end
 
 
 def starts_with_consonant? s
-  !!(s[0] =~ /[^aeiou]/i)
+  if !!(s[0] =~ /[^aeiou]/i) and !!(s[0] =~ /[a-z]/i) 
+     return true
+  else
+     return false
+  end
 end
 
 
 def binary_multiple_of_4? s
-  if  !!(s =~ /\s/)
+  if  !!(s =~ /\s/) or s=='' 
     return false
   elsif  !!(s !~ /[^01]/) 
-  # if s.chars.all? {|x| x =~ /[01]/}
     num = Integer(s)
     if num % 4 == 0
       return true 
@@ -74,7 +83,7 @@ class BookInStock
     def initialize(isbn,price)
         @isbn =isbn
         @price =price
-        if @price <= 0 or @isbn == " "  
+        if @price <= 0 or @isbn == " " or @isbn == "" 
 			raise ArgumentError
         end
     end
